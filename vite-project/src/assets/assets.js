@@ -1,5 +1,4 @@
-import logo from './logo.svg'
-import logo_dark from './logo_dark.svg'
+import logo from './my_logo.png'
 import search_icon from './search_icon.svg'
 import cross_icon from './cross_icon.svg'
 import upload_area from './upload_area.svg'
@@ -66,7 +65,7 @@ export const assets = {
     dropdown_icon,
     cross_icon,
     upload_area,
-    logo_dark,
+    
     down_arrow_icon,
     time_left_clock_icon,
     time_clock_icon,
@@ -93,8 +92,8 @@ export const assets = {
 
 export const dummyEducatorData = {
     "_id": "675ac1512100b91a6d9b8b24",
-    "name": "GreatStack",
-    "email": "user.greatstack@gmail.com",
+    "name": "Learnify",
+    "email": "bhardwajkunal0111@gmail.com",
     "imageUrl": "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yclFkaDBOMmFqWnBoTTRBOXZUanZxVlo0aXYifQ",
     "createdAt": "2024-12-12T10:56:17.930Z",
     "updatedAt": "2024-12-12T10:56:17.930Z",

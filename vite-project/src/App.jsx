@@ -1,4 +1,5 @@
 import React from 'react'
+import { useMatch } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import Home from './pages/student/Home'
@@ -12,9 +13,14 @@ import Dashboard from './pages/educator/Dashboard'
 import AddCourse from './pages/educator/AddCourse'
 import MyCourses from './pages/educator/MyCourses'
 import StudentsEnroll from './pages/educator/StudentsEnroll'
+import Navbar from './components/student/Navbar'
 const App = () => {
+  const isEducatorRoute = useMatch('/educator/*');
+  // this line means that if the current route matches the pattern '/educator/*', then isEducatorRoute will be true, otherwise it will be false. The asterisk (*) acts as a wildcard, allowing for any sub-routes under '/educator/' to also match.
   return (
-    <div>
+    <div className='text-default min-h-screen bg-white'>
+      {!isEducatorRoute && <Navbar />}
+      {/* this means that if the current route is not an educator route, then the Navbar component will be displayed */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/course-list" element={<CoursesList />} />
