@@ -1,7 +1,7 @@
 import React from 'react'
 import { assets } from '../../assets/assets'
 import { Link } from 'react-router-dom'
-import { useClerk, useUser } from '@clerk/clerk-react'
+import { useClerk, UserButton, useUser } from '@clerk/clerk-react'
 
 const Navbar = () => {
  
@@ -17,8 +17,12 @@ const Navbar = () => {
           <button> Become Instructor | </button>
           <Link to='/my-enrollments'>My Enrollments</Link>
         </div>
-        <button onClick={() => openSignIn()} className='bg-purple-950 text-white px-5 py-2 rounded-3xl hover:bg-purple-900'>
-          Create Account</button>
+
+        {user ? <UserButton /> :
+          
+          
+          <button onClick={() => openSignIn()} className='bg-purple-950 text-white px-5 py-2 rounded-3xl hover:bg-purple-900'>
+          Create Account</button>}
 
       </div>
 
