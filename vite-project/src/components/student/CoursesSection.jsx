@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
+import CourseCard from "./CourseCard";
 
 const CoursesSection = () => {
+  const {allCourses} = useContext(AppContext)
   return (
     <section className="w-full py-16 sm:py-20">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 text-center">
@@ -18,8 +21,9 @@ const CoursesSection = () => {
         </p>
 
         {/* Course Cards */}
-        <div className="mt-12">
-          {/* Your Course Cards Component Here */}
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12'>
+          {allCourses.slice(0,4).map((course,index)=><CourseCard key={index} course={course} />)}
+          {/* yahan courseCard component k andr humne course ko as prop bhja or course k details le liye */}
         </div>
 
         <Link
@@ -29,7 +33,7 @@ const CoursesSection = () => {
             inline-flex
             items-center
             justify-center
-            mt-12
+            mt-4
             px-8
             py-3
             rounded-full
