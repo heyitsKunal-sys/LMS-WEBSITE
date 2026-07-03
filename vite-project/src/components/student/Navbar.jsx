@@ -10,7 +10,7 @@ const Navbar = () => {
   const { user } = useUser()
   return (
     <div className={`flex justify-between items-center px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4 ${isCourseListPage ? 'bg-white-100' : 'bg-white'}`}>
-      <img src={assets.logo} alt="Logo" className='w-10 lg:w-20 cursor-pointer' />
+      <img src={assets.logo} alt="Logo" className='w-5 lg:w-10 cursor-pointer' />
 
       <div className='hidden md:flex items-center gap-6 text-gray-700'>
         <div className='flex items-center gap-5'>
