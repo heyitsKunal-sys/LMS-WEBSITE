@@ -3,27 +3,34 @@
 
 * {
   font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
+  /* font-optical-sizing: auto; */
   /* font-weight: 400; */
-  font-style:normal;
+  /* font-style:normal; */
   
 }
 
 @theme {
-  --text-course-details-heading-small: 26px;
-  --text-course-details-heading-small--line-height: 36px;
 
-  --text-course-details-heading-large: 36px;
-  --text-course-details-heading-large--line-height: 44px;
+  /* Home */
 
-  --text-home-heading-small: 32px;
-  --text-home-heading-small--line-height: 44px;
+  --text-home-heading-small: 38px;
+  --text-home-heading-small--line-height: 46px;
 
-  --text-home-heading-large: 44px;
-  --text-home-heading-large--line-height: 52px;
+  --text-home-heading-large: 58px;
+  --text-home-heading-large--line-height: 66px;
 
-  --text-default: 15px;
-  --text-default--line-height: 21px;
+  /* Course Details */
+
+  --text-course-details-heading-small: 30px;
+  --text-course-details-heading-small--line-height: 40px;
+
+  --text-course-details-heading-large: 42px;
+  --text-course-details-heading-large--line-height: 54px;
+
+  /* Default */
+
+  --text-default:16px;
+  --text-default--line-height:26px;
 }
 .char {
   display: inline-block;

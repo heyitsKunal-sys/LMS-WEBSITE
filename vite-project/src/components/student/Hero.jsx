@@ -1,84 +1,119 @@
 import React, { useRef } from "react";
 import { assets } from "../../assets/assets";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import SplitType from "split-type";
 import SearchBar from "./SearchBar";
 
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 const Hero = () => {
-  const titleRef = useRef(null);
-  const paraRef = useRef(null);
+  const headingRef = useRef(null);
+  const paragraphRef = useRef(null);
+  const searchRef = useRef(null);
 
   useGSAP(() => {
-    const split = new SplitType(titleRef.current, {
-      types: "chars",
-    });
-
-    gsap.set(split.chars, {
-      opacity: 0,
-      y: 100,
-      rotateX: -90,
-      filter: "blur(10px)",
-    });
-
     const tl = gsap.timeline();
 
-    tl.to(split.chars, {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      filter: "blur(0px)",
-      stagger: 0.025,
-      duration: 0.7,
-      ease: "back.out(2)",
-    }).from(
-      paraRef.current,
-      {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: "power3.out",
-      },
-      "-=0.3"
-    );
-
-    return () => split.revert();
+    tl.from(headingRef.current, {
+      y: 80,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out",
+    })
+      .from(
+        paragraphRef.current,
+        {
+          y: 35,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        "-=0.5"
+      )
+      .from(
+        searchRef.current,
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          ease: "back.out(1.7)",
+        },
+        "-=0.4"
+      );
   }, []);
 
   return (
-    <section className="w-full overflow-hidden bg-linear-to-b from-white to-white">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-24 md:pt-36 text-center">
+    <section className="w-full bg-linear-to-b from-white to-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-20 md:pt-28 lg:pt-32 pb-16 text-center">
 
+        {/* Heading */}
         <h1
-          ref={titleRef}
-          className="relative mx-auto max-w-5xl font-bold leading-tight text-gray-800"
+          ref={headingRef}
+          className="relative mx-auto max-w-5xl font-extrabold leading-tight"
         >
-          <span className="block text-[clamp(2.2rem,6vw,4.5rem)]">
+          <span
+            className="
+              block
+              text-gray-900
+              text-[2.2rem]
+              sm:text-[3rem]
+              md:text-[3.8rem]
+              lg:text-[4.2rem]
+              leading-tight
+            "
+          >
             Build your future with
           </span>
 
-          <span className="relative mt-2 block text-blue-900 text-[clamp(1.8rem,5vw,3rem)]">
+          <span
+            className="
+              relative
+              mt-2
+              block
+              text-blue-900
+              text-[1.6rem]
+              sm:text-[2.2rem]
+              md:text-[2.8rem]
+              lg:text-[3rem]
+              leading-tight
+            "
+          >
             expert instructors and best courses
 
             <img
               src={assets.sketch}
-              alt="sketch"
-              className="hidden md:block absolute -bottom-6 right-0 w-40"
+              alt=""
+              className="hidden lg:block absolute -bottom-5 right-8 w-36"
             />
           </span>
         </h1>
 
+        {/* Paragraph */}
         <p
-          ref={paraRef}
-          className="mt-8 mx-auto max-w-2xl text-gray-500 text-base sm:text-lg leading-8"
+          ref={paragraphRef}
+          className="
+            mt-7
+            mx-auto
+            max-w-xl
+            md:max-w-2xl
+            text-gray-500
+            text-sm
+            sm:text-base
+            leading-7
+          "
         >
-          We have the best courses, excellent  instructors,
-          interactive learning experiences, and a supportive community to help
-          you achieve your goals
-
+          We have the best courses, excellent instructors, interactive learning
+          experiences, and a supportive community to help you achieve your
+          goals. Start learning today and build the career you've always
+          dreamed of.
         </p>
-        <SearchBar />
 
+        {/* Search Bar */}
+        <div
+          ref={searchRef}
+          className="mt-10 flex justify-center"
+        >
+          <SearchBar />
+        </div>
       </div>
     </section>
   );
