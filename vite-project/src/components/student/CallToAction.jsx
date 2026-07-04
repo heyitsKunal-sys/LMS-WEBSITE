@@ -3,7 +3,10 @@ import React from 'react'
 const CallToAction = () => {
   return (
     <div>
-      <h1>CallToAction</h1>
+      <h1>Learn anything, anytime , anywhere</h1>
+      <p>
+        
+      </p>
     </div>
   )
 }
