@@ -5,7 +5,7 @@ import { useClerk, UserButton, useUser } from '@clerk/clerk-react'
 import { AppContext } from '../../context/AppContext'
 
 const Navbar = () => {
-  const {navigate} = useContext(AppContext)
+  const { navigate, isEducator } = useContext(AppContext)
 
   const isCourseListPage = location.pathname.includes('/course-list');
   const { openSignIn, openSignUp } = useClerk()
@@ -13,14 +13,14 @@ const Navbar = () => {
 
   return (
     <div className={`flex justify-between items-center px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4 ${isCourseListPage ? 'bg-white-100' : 'bg-white'}`}>
-      <img onClick={()=> navigate('/')} src={assets.logo} alt="Logo" className='w-5 lg:w-10 cursor-pointer' />
+      <img onClick={() => navigate('/')} src={assets.logo} alt="Logo" className='w-5 lg:w-10 cursor-pointer' />
 
       <div className='hidden md:flex items-center gap-6 text-gray-700'>
         <div className='flex items-center gap-5'>
 
           {user &&
             <>
-              <button> Become Instructor | </button>
+              <button onClick={() => { navigate('/educator') }}> {isEducator ? 'Educator Dashboard' : 'Become Educator'} </button>
               <Link to='/my-enrollments'>My Enrollments</Link>
             </>
           }
@@ -45,7 +45,7 @@ const Navbar = () => {
         <div className='flex items-center gap-1 sm:gap-2 max-sm:text-xs'>
           {user &&
             <>
-              <button> Become Instructor | </button>
+              <button onClick={() => { navigate('/educator') }}> {isEducator ? 'Educator Dashboard' : 'Become Educator'} </button>
               <Link to='/my-enrollments'>My Enrollments</Link>
             </>
           }

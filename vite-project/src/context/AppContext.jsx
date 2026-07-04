@@ -8,6 +8,7 @@ export  const AppContextProvider = (props) =>{
     const currency = import.meta.env.VITE_CURRENCY
     const navigate= useNavigate()
     const [allCourses , setAllCourses] = useState([])
+    const [isEducator, setIsEducator] = useState(true)
 
     // fetching all courses
     const fetchAllCourses = async ()=>{
@@ -36,7 +37,7 @@ export  const AppContextProvider = (props) =>{
     },[])
     // fetchAllCourses() ye function fetch karega data dummyCourses se or store karega allCourses state 
     const value ={
-        currency , allCourses ,navigate, calculateRating
+        currency , allCourses ,navigate, calculateRating, isEducator,setIsEducator
 
     }
     return (
