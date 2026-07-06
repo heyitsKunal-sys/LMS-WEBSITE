@@ -2,9 +2,16 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div>
-      <h1>Footer</h1>
-    </div>
+    <footer>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+
+      </div>
+      <p>Copyright 2026 Learnify. All Right Reserved</p>
+      
+    </footer>
   )
 }
 
