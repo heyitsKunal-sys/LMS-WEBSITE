@@ -11,7 +11,7 @@ const SearchBar = ({data}) => {
     navigate('/course-list/' + input )
   }
   return (
-    <div className="w-full flex justify-center px-4 sm:px-6 lg:px-8 mt-8">
+    <div className=" flex justify-center px-4 sm:px-6 lg:px-8 mt-8">
       <form onSubmit={onSearchHandler} className="w-full max-w-4xl bg-white border border-gray-300 rounded-full shadow-md flex items-center overflow-hidden">
 
         
