@@ -33,7 +33,7 @@
   --text-default--line-height:26px;
 
 
-  
+  --spacing-section-height:500px;
 }
 .char {
   display: inline-block;
