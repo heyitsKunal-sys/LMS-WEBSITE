@@ -44,7 +44,7 @@ const CourseDetails = () => {
               )}
 
             </div>
-            <p className='text-gray-500'>{courseData.courseRatings.length}</p>
+            <p className='text-gray-500'>{courseData.courseRatings.length} {courseData.courseRatings.length >1 ? 'ratings':'rating'}</p>
           </div>
         </div>
 
