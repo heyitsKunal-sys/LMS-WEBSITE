@@ -8,7 +8,7 @@ const CourseDetails = () => {
   const { id } = useParams()   //using this id we can find particular course from allCourses
   const [courseData, setCourseData] = useState(null)
 
-  const { allCourses,calculateRating } = useContext(AppContext)
+  const { allCourses, calculateRating } = useContext(AppContext)
 
   const fetchCourseData = async () => {
     const findCourse = allCourses.find(course => course._id === id)
@@ -44,7 +44,8 @@ const CourseDetails = () => {
               )}
 
             </div>
-            <p className='text-gray-500'>{courseData.courseRatings.length} {courseData.courseRatings.length >1 ? 'ratings':'rating'}</p>
+            <p className='text-blue-800'>({courseData.courseRatings.length} {courseData.courseRatings.length > 1 ? 'ratings' : 'rating'})</p>
+            <p>{courseData.enrolledStudents.length}{courseData.enrolledStudents.length > 1 ? 'students' : 'student'}</p>
           </div>
         </div>
 
