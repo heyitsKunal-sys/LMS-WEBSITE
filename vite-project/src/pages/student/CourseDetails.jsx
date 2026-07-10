@@ -53,7 +53,7 @@ const CourseDetails = () => {
 
 
 
-        {/* rightcoloumns */}
+        {/* rightcoloumnsss */}
         <div></div>
       </div>
     </>
