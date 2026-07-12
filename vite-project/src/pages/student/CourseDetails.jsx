@@ -8,6 +8,7 @@ import humanizeDuration from 'humanize-duration'
 const CourseDetails = () => {
   const { id } = useParams()   //using this id we can find particular course from allCourses
   const [courseData, setCourseData] = useState(null)
+  const [openSections, setOpenSections] = useState({})
 
   const { allCourses, calculateRating, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime } = useContext(AppContext)
 
@@ -15,11 +16,22 @@ const CourseDetails = () => {
     const findCourse = allCourses.find(course => course._id === id)
     setCourseData(findCourse);
   }
+
   useEffect(() => {
     fetchCourseData()
 
 
   }, [])
+
+  const toggleSection = (index) => {
+    setOpenSections((prev) => (
+      {
+        ...prev, [index]: !prev[index],
+
+      }
+    ));
+
+  }
 
   return courseData ? (
     <>
@@ -55,14 +67,17 @@ const CourseDetails = () => {
             <div className='pt-5'>
               {courseData.courseContent.map((chapter, index) => (
                 <div key={index} className='border border-gray-400 bg-white mb-2 rounded'>
-                  <div className='flex items-center justify-between px-4 py-3 cursor-pointer select-none'>
+                  <div className='flex items-center justify-between px-4 py-3 cursor-pointer select-none'
+                    onClick={() => toggleSection(index)}>
+
                     <div className='flex items-center gap-2'>
                       <img src={assets.down_arrow_icon} alt="arrow icon" />
                       <p className='font-medium md:text-base text-sm'>{chapter.chapterTitle}</p>
                     </div>
                     <p className='text-sm md:text-default'>{chapter.chapterContent.length}Lectures - {calculateChapterTime(chapter)}</p>
                   </div>
-                  <div className='overflow-hidden transition-all duration-300 max-h-96'>
+                  <div className={`overflow-hidden transition-all duration-300 ${openSections[index] ? 'max-h-96' : 'max-h-0'} `} >
+
                     <ul className='list-disc md:pl-10 pl-4 pr-4 py-2 text-gray-600 border-t border-gray-400'>
                       {chapter.chapterContent.map((lecture, i) => (
                         <li className='flex items-start gap-2 py-1' key={i}>
@@ -85,6 +100,13 @@ const CourseDetails = () => {
 
             </div>
 
+          </div>
+          <div>
+            <div className='py-20 text-sm md:text-default'>
+              <h3 className='text-xl font-semibold text-gray-800'>Course Descripton</h3>
+              <p className='pt-3 rich-text'
+                dangerouslySetInnerHTML={{ __html: courseData.courseDescription }}></p>
+            </div>
           </div>
         </div>
 
