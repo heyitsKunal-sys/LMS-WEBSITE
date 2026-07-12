@@ -20,26 +20,28 @@ const CoursesList = () => {
   }, [allCourses, input])
   return (
     <>
-      <div className='relative md:px-36 px-8 pt-20 text-left'>
+      <div className='relative max-w-7xl mx-auto md:px-12 px-6 pt-14 pb-6 text-left'>
         <div className='flex md:flex-row flex-col gap-6 items-start justify-between w-full'>
           <div>
-
-            <h1 className='text-4xl font-semibold text-gray-800'>Course List</h1>
-            <p className='text-gray-500'>
-              <span className='text-blue-600 cursor-pointer'
+            <h1 className='font-display text-3xl md:text-4xl font-bold text-white'>Course Catalog</h1>
+            <p className='text-ink-300 mt-2'>
+              <span className='text-brand-300 cursor-pointer hover:underline'
                 onClick={() => navigate('/')}>Home</span> / <span>Course List</span> </p>
           </div>
           <SearchBar data={input} />
         </div>
-        {input && <div className='inline-flex items-center gap-4 px-4 py-2 border mt-8 -mb-8 text-gray-600'>
-          <p>{input}</p>
-          <img src={assets.cross_icon} alt="" className='cursor-pointer ' onClick={()=>
+        {input && <div className='inline-flex items-center gap-4 px-4 py-2 rounded-full border border-white/15 bg-white/5 mt-8 text-ink-300'>
+          <p>Results for "{input}"</p>
+          <img src={assets.cross_icon} alt="" className='cursor-pointer invert opacity-70' onClick={() =>
             navigate('/course-list')
           } />
         </div>
         }
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-16 gap-3 px-2 md:p-0'>
-          {filteredCourse.map((course, index) => <CourseCard key={index} course={course} />)}
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-12 gap-6'>
+          {filteredCourse.length > 0
+            ? filteredCourse.map((course, index) => <CourseCard key={index} course={course} />)
+            : <p className='col-span-full text-center text-ink-300 py-16'>No courses matched your search — try a different keyword.</p>
+          }
         </div>
       </div>
       <Footer />

@@ -3,17 +3,18 @@ import { assets, dummyTestimonial } from "../../assets/assets";
 
 const TestimonialsSection = () => {
   return (
-    <section className="w-full pt-8 pb-16 sm:pt-10 sm:pb-20">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <section className="relative w-full pt-8 pb-20 sm:pt-10 sm:pb-24 px-5">
+      <div className="max-w-7xl mx-auto sm:px-8 lg:px-12">
 
         {/* Heading */}
-        <h2 className="text-center font-bold text-gray-800 text-[clamp(2rem,4vw,2.8rem)]">
-          Testimonials
+        <span className="block text-center text-brand-300 text-xs sm:text-sm font-semibold tracking-widest uppercase">Learner stories</span>
+        <h2 className="text-center font-display font-bold text-white text-[clamp(2rem,4vw,2.8rem)] mt-3">
+          Loved by learners everywhere
         </h2>
 
-        <p className="mt-4 text-center text-gray-500 max-w-3xl mx-auto text-sm sm:text-base leading-7">
-          Journey of transformation and success of our learners as they share
-          how our platform has made a difference in their lives.
+        <p className="mt-4 text-center text-ink-300 max-w-3xl mx-auto text-sm sm:text-base leading-7">
+          Real people, real career moves. Here's what a few of our students
+          have to say about learning with Nexalearn.
         </p>
 
         {/* Testimonial Cards */}
@@ -23,7 +24,7 @@ const TestimonialsSection = () => {
 
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+              className="card-surface rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
             >
 
               {/* User */}
@@ -32,15 +33,15 @@ const TestimonialsSection = () => {
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-14 h-14 rounded-full object-cover"
+                  className="w-14 h-14 rounded-full object-cover ring-2 ring-brand-300"
                 />
 
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-ink-900">
                     {testimonial.name}
                   </h3>
 
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-ink-500">
                     {testimonial.role}
                   </p>
                 </div>
@@ -67,11 +68,11 @@ const TestimonialsSection = () => {
 
                 </div>
 
-                <p className="mt-5 text-gray-600 text-sm leading-7">
+                <p className="mt-5 text-ink-500 text-sm leading-7">
                   {testimonial.feedback}
                 </p>
 
-                <button className="mt-6 text-blue-700 font-medium hover:underline cursor-pointer">
+                <button className="mt-6 text-brand-600 font-medium hover:underline cursor-pointer">
                   Read More
                 </button>
 

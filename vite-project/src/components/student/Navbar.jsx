@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { assets } from '../../assets/assets'
 import { Link } from 'react-router-dom'
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react'
@@ -6,57 +6,59 @@ import { AppContext } from '../../context/AppContext'
 
 const Navbar = () => {
   const { navigate, isEducator } = useContext(AppContext)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const isCourseListPage = location.pathname.includes('/course-list');
-  const { openSignIn, openSignUp } = useClerk()
+  const { openSignIn } = useClerk()
   const { user } = useUser()
 
   return (
-    <div className={`flex justify-between items-center px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4 ${isCourseListPage ? 'bg-white-100' : 'bg-white'}`}>
-      <img onClick={() => navigate('/')} src={assets.logo} alt="Logo" className='w-5 lg:w-10 cursor-pointer' />
+    <div className={`sticky top-0 z-50 backdrop-blur-xl border-b border-white/10 ${isCourseListPage ? 'bg-ink-900/90' : 'bg-ink-900/70'}`}>
+      <div className='flex justify-between items-center px-4 sm:px-10 md:px-14 lg:px-20 py-3.5 max-w-[1600px] mx-auto'>
 
-      <div className='hidden md:flex items-center gap-6 text-gray-700'>
-        <div className='flex items-center gap-5'>
+        <button onClick={() => navigate('/')} className='flex items-center gap-2 cursor-pointer'>
+          <img src={assets.logo} alt="Nexalearn" className='w-8 lg:w-9' />
+          <span className='font-display font-bold text-lg lg:text-xl text-white tracking-tight'>Nexalearn</span>
+        </button>
 
-          {user &&
-            <>
-              <button onClick={() => { navigate('/educator') }}> {isEducator ? 'Educator Dashboard' : 'Become Educator'} </button>
-              <Link to='/my-enrollments'>My Enrollments</Link>
-            </>
-          }
-          {/* we use && opeartor because we only want to display these elements if the user is logged in 
-          we use <>...</> to group multiple elements 
-          simply user && <> </> means if user exists, render the elements inside */}
+        {/* desktop */}
+        <div className='hidden md:flex items-center gap-7'>
+          <div className='flex items-center gap-6 text-sm font-medium text-ink-300'>
+            {user &&
+              <>
+                <button onClick={() => navigate('/educator')} className='hover:text-white transition-colors cursor-pointer'>
+                  {isEducator ? 'Educator Dashboard' : 'Become an Educator'}
+                </button>
+                <Link to='/my-enrollments' className='hover:text-white transition-colors'>My Enrollments</Link>
+              </>
+            }
+          </div>
+
+          {user ? <UserButton /> :
+            <button onClick={() => openSignIn()} className='btn-primary !py-2.5 !px-6 text-sm'>
+              Get Started
+            </button>}
         </div>
 
-        {user ? <UserButton /> :
-
-
-          <button onClick={() => openSignIn()} className='bg-purple-950 text-white px-5 py-2 rounded-3xl hover:bg-purple-900'>
-            Create Account</button>}
-        {/* here we use ternary operator because we want to display different elements based on the user's authentication status
-          simply means if user exists, render UserButton, otherwise render Create Account button */}
-
-      </div>
-
-
-      {/* phone screen */}
-      <div className='md:hidden flex items-center gap-2 sm:gap-5 text-gray-500'>
-        <div className='flex items-center gap-1 sm:gap-2 max-sm:text-xs'>
-          {user &&
-            <>
-              <button onClick={() => { navigate('/educator') }}> {isEducator ? 'Educator Dashboard' : 'Become Educator'} </button>
-              <Link to='/my-enrollments'>My Enrollments</Link>
-            </>
+        {/* mobile */}
+        <div className='md:hidden flex items-center gap-3 text-ink-300'>
+          <div className='flex items-center gap-2 max-sm:text-xs font-medium'>
+            {user &&
+              <>
+                <button onClick={() => navigate('/educator')} className='hover:text-white transition-colors'>
+                  {isEducator ? 'Dashboard' : 'Teach'}
+                </button>
+                <Link to='/my-enrollments' className='hover:text-white transition-colors'>Enrollments</Link>
+              </>
+            }
+          </div>
+          {
+            user ? <UserButton /> :
+              <button onClick={() => openSignIn()}>
+                <img src={assets.user_icon} alt="User" className='invert' />
+              </button>
           }
-          {/* when user is logged in then this become instructor and my enrollments will shown */}
         </div>
-        {
-          user ? <UserButton /> :
-            <button onClick={() => openSignIn()}>
-              <img src={assets.user_icon} alt="User" />
-            </button>
-        }
 
       </div>
     </div>

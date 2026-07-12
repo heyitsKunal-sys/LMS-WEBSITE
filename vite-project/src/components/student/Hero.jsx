@@ -42,18 +42,23 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="w-full bg-linear-to-b from-white to-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-20 md:pt-28 lg:pt-32 pb-16 text-center">
+    <section className="relative w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-24 md:pt-32 lg:pt-40 pb-16 text-center">
+
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 text-brand-300 text-xs sm:text-sm font-medium mb-6 bg-white/5">
+          <span className="w-1.5 h-1.5 rounded-full bg-cyan-glow animate-pulse" />
+          Trusted by 40,000+ learners worldwide
+        </span>
 
         {/* Heading */}
         <h1
           ref={headingRef}
-          className="relative mx-auto max-w-5xl font-extrabold leading-tight"
+          className="relative mx-auto max-w-5xl font-extrabold leading-tight font-display"
         >
           <span
             className="
               block
-              text-gray-900
+              text-white
               text-[2.2rem]
               sm:text-[3rem]
               md:text-[3.8rem]
@@ -61,7 +66,7 @@ const Hero = () => {
               leading-tight
             "
           >
-            Build your future with
+            Skills that move you
           </span>
 
           <span
@@ -69,20 +74,20 @@ const Hero = () => {
               relative
               mt-2
               block
-              text-blue-900
-              text-[1.6rem]
-              sm:text-[2.2rem]
-              md:text-[2.8rem]
-              lg:text-[3rem]
+              text-gradient
+              text-[1.8rem]
+              sm:text-[2.4rem]
+              md:text-[3rem]
+              lg:text-[3.2rem]
               leading-tight
             "
           >
-            expert instructors and best courses
+            forward, taught by people who ship
 
             <img
               src={assets.sketch}
               alt=""
-              className="hidden lg:block absolute -bottom-5 right-8 w-36"
+              className="hidden lg:block absolute -bottom-5 right-8 w-36 opacity-80"
             />
           </span>
         </h1>
@@ -95,16 +100,15 @@ const Hero = () => {
             mx-auto
             max-w-xl
             md:max-w-2xl
-            text-gray-500
+            text-ink-300
             text-sm
             sm:text-base
             leading-7
           "
         >
-          We have the best courses, excellent instructors, interactive learning
-          experiences, and a supportive community to help you achieve your
-          goals. Start learning today and build the career you've always
-          dreamed of.
+          Nexalearn pairs project-based courses with instructors who work in the
+          field right now. Learn by building, get feedback that matters, and
+          walk away with a portfolio — not just a certificate.
         </p>
 
         {/* Search Bar */}

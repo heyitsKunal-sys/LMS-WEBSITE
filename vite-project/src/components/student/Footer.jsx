@@ -3,34 +3,40 @@ import { assets } from '../../assets/assets'
 
 const Footer = () => {
   return (
-    <footer className='bg-gray-800 md:px-36 text-left w-full mt-10'>
-      <div className='flex flex-col md:flex-row items-start px-8 md:px-0
-      justify-center gap-10 md:gap-32 py-10 border-b border-white/30'>
+    <footer className='relative w-full mt-10 border-t border-white/10'>
+      <div className='max-w-7xl mx-auto flex flex-col md:flex-row items-start px-8 md:px-12
+      justify-center gap-10 md:gap-32 py-12'>
         <div className='flex flex-col md:items-start items-center w-full'>
-          <img className='w-10 h-10' src={assets.logo} alt="logo" />
-          <p className='mt-6 text-center md:text-left text-sm text-white'> jhdfiuhuhfiuvhsiundhviuhciuhu</p>
+          <div className='flex items-center gap-2'>
+            <img className='w-8 h-8' src={assets.logo} alt="logo" />
+            <span className='font-display font-bold text-lg text-white'>Nexalearn</span>
+          </div>
+          <p className='mt-4 text-center md:text-left text-sm text-ink-300 max-w-xs'>
+            A learning platform built around real projects, honest feedback, and
+            instructors who are still in the trenches.
+          </p>
         </div>
         <div className='flex flex-col md:items-start items-center w-full'>
-          <h2 className='font-semibold text-white mb-5'>Company</h2>
-          <ul className='flex md:flex-col w-full justify-between text-sm text-white md:space-y-2'>
-            <li><a href="#"></a>Home</li>
-            <li><a href="#"></a>About Us</li>
-            <li><a href="#"></a>Contact</li>
-            <li><a href="#"></a>Privacy Policy</li>
+          <h2 className='font-display font-semibold text-white mb-5'>Company</h2>
+          <ul className='flex md:flex-col w-full justify-between gap-3 md:gap-3 text-sm text-ink-300'>
+            <li><a href="#" className='hover:text-white transition-colors'>Home</a></li>
+            <li><a href="#" className='hover:text-white transition-colors'>About Us</a></li>
+            <li><a href="#" className='hover:text-white transition-colors'>Contact</a></li>
+            <li><a href="#" className='hover:text-white transition-colors'>Privacy Policy</a></li>
           </ul>
         </div>
         <div className='hidden md:flex flex-col items-start w-full'>
-          <h2 className='font-semibold text-white mb-5'>Subscribe to our Newsletter</h2>
-          <p className='text-sm text-white'>Latest news, articles, and resources sent to your inbox weekly</p>
+          <h2 className='font-display font-semibold text-white mb-5'>Stay in the loop</h2>
+          <p className='text-sm text-ink-300'>New courses, instructor spotlights and learning tips — straight to your inbox, weekly.</p>
           <div className='flex items-center pt-4 gap-2'>
-            <input type="email" placeholder='Enter your email' className='border border-gray-300 text-white placeholder-gray-500 outline-none w-64 h-9 rounded px-2 text-sm' />
-            <button className=' bg-purple-900  hover:bg-blue-800 transition-all duration-300 w-24 h-9 text-white rounded'>Subscribe</button>
+            <input type="email" placeholder='Enter your email' className='border border-white/15 bg-white/5 text-white placeholder-ink-300 outline-none w-64 h-10 rounded-full px-4 text-sm focus:border-brand-400' />
+            <button className='btn-primary !py-2.5 !px-5 text-sm whitespace-nowrap'>Subscribe</button>
           </div>
 
         </div>
 
       </div>
-      <p className='py-4 text-center text-xs md:text-sm text-white'>Copyright 2026 ©  Learnify. All Right Reserved</p>
+      <p className='py-5 text-center text-xs md:text-sm text-ink-300 border-t border-white/10'>© 2026 Nexalearn. All rights reserved.</p>
 
     </footer>
   )

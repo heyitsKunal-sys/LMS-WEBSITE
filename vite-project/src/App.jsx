@@ -14,11 +14,14 @@ import AddCourse from './pages/educator/AddCourse'
 import MyCourses from './pages/educator/MyCourses'
 import StudentsEnroll from './pages/educator/StudentsEnroll'
 import Navbar from './components/student/Navbar'
+import Scene3D from './components/student/Scene3D'
+
 const App = () => {
   const isEducatorRoute = useMatch('/educator/*');
   // this line means that if the current route matches the pattern '/educator/*', then isEducatorRoute will be true, otherwise it will be false. The asterisk (*) acts as a wildcard, allowing for any sub-routes under '/educator/' to also match.
   return (
-    <div className='text-default min-h-screen bg-white'>
+    <div className='text-default min-h-screen'>
+      <Scene3D />
       {!isEducatorRoute && <Navbar />}
       {/* this means that if the current route is not an educator route, then the Navbar component will be displayed */}
       <Routes>
@@ -33,12 +36,10 @@ const App = () => {
         <Route path="/loading/:path" element={<Loading />} />
 
         <Route path='/educator' element={<Educator />} >
-          <Route path = 'educator' element ={<Dashboard />}/>
-          <Route path = 'add-course' element ={<AddCourse />}/>
-          <Route path = 'my-courses' element ={<MyCourses />}/>
-          <Route path = 'student-enroll' element ={<StudentsEnroll />}/>
-
-
+          <Route index element={<Dashboard />} />
+          <Route path='add-course' element={<AddCourse />} />
+          <Route path='my-courses' element={<MyCourses />} />
+          <Route path='student-enroll' element={<StudentsEnroll />} />
         </Route>
 
       </Routes>

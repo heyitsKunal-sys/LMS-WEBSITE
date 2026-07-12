@@ -1,18 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 * {
-  font-family: "Montserrat", sans-serif;
-  /* font-optical-sizing: auto; */
-  /* font-weight: 400; */
-  /* font-style:normal; */
-  
+  font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: "Sora", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #08070f;
 }
 
 @theme {
 
-  /* Home */
+  /* Brand palette */
+  --color-brand-950: #0b0a17;
+  --color-brand-900: #120f24;
+  --color-brand-800: #1b1636;
+  --color-brand-700: #2a1f57;
+  --color-brand-600: #4c2a9e;
+  --color-brand-500: #7c3aed;
+  --color-brand-400: #a566f5;
+  --color-brand-300: #c9a6fb;
+  --color-accent-500: #f4b740;
+  --color-accent-400: #ffd166;
+  --color-cyan-glow: #35e8d3;
+  --color-ink-900: #0a0a12;
+  --color-ink-700: #1a1a2b;
+  --color-ink-500: #55536b;
+  --color-ink-300: #9694ab;
+  --color-mist-100: #f6f4fc;
 
+  /* Home */
   --text-home-heading-small: 28px;
   --text-home-heading-small--line-height: 34px;
 
@@ -20,7 +44,6 @@
   --text-home-heading-large--line-height: 56px;
 
   /* Course Details */
-
   --text-course-details-heading-small: 30px;
   --text-course-details-heading-small--line-height: 40px;
 
@@ -28,16 +51,181 @@
   --text-course-details-heading-large--line-height: 54px;
 
   /* Default */
+  --text-default: 16px;
+  --text-default--line-height: 26px;
 
-  --text-default:16px;
-  --text-default--line-height:26px;
-
-
-  --spacing-section-height:500px;
-  
+  --spacing-section-height: 500px;
 }
+
 .char {
   display: inline-block;
   transform-origin: center;
   will-change: transform, opacity;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #7c3aed 0%, #a566f5 50%, #35e8d3 150%);
+  background-size: 180% 180%;
+  background-position: 0% 50%;
+  box-shadow: 0 8px 24px -8px rgba(124, 58, 237, 0.65);
+  transition: background-position 0.5s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+  background-position: 100% 50%;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -6px rgba(124, 58, 237, 0.8);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1.5px solid rgba(124, 58, 237, 0.4);
+  color: #1b1636;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+
+.btn-secondary:hover {
+  border-color: #7c3aed;
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -10px rgba(124, 58, 237, 0.5);
+}
+
+.btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: white;
+  transition: all 0.25s ease;
+}
+
+.btn-ghost-light:hover {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #a566f5, #7c3aed 45%, #35e8d3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-surface {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(124, 58, 237, 0.12);
+}
+
+/* ---------- 3D animated background ---------- */
+
+.scene-3d {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  perspective: 1400px;
+  background: radial-gradient(ellipse 120% 80% at 50% -10%, #1b1636 0%, #0b0a17 55%, #08070f 100%);
+}
+
+.scene-3d__grid {
+  position: absolute;
+  inset: -20%;
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.16) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: rotateX(62deg) translateZ(-120px);
+  transform-style: preserve-3d;
+  animation: gridDrift 22s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes gridDrift {
+  from { background-position: 0 0; }
+  to { background-position: 0 640px; }
+}
+
+.shape-3d {
+  position: absolute;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.shape-3d__cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: cubeSpin 18s linear infinite;
+}
+
+.shape-3d__face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(165, 102, 245, 0.55);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.22), rgba(53, 232, 211, 0.12));
+  border-radius: 12px;
+}
+
+@keyframes cubeSpin {
+  from { transform: rotateX(0deg) rotateY(0deg); }
+  to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+.shape-3d__ring {
+  border-radius: 50%;
+  border: 2px solid rgba(53, 232, 211, 0.45);
+  animation: ringSpin 26s linear infinite;
+}
+
+@keyframes ringSpin {
+  from { transform: rotateX(72deg) rotateZ(0deg); }
+  to { transform: rotateX(72deg) rotateZ(360deg); }
+}
+
+.shape-3d__orb {
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.55), rgba(124, 58, 237, 0.35) 40%, rgba(124, 58, 237, 0) 72%);
+  filter: blur(1px);
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) translateZ(0) scale(1); }
+  50% { transform: translateY(-40px) translateZ(60px) scale(1.08); }
+}
+
+@media (max-width: 768px) {
+  .scene-3d__grid { opacity: 0.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-3d__grid, .shape-3d__cube, .shape-3d__ring, .shape-3d__orb {
+    animation: none !important;
+  }
 }
