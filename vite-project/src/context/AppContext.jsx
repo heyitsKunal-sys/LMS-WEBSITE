@@ -1,47 +1,76 @@
-import {createContext, useEffect, useState} from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { dummyCourses } from '../assets/assets';
 import { useNavigate } from 'react-router-dom';
+import humanizeDuration from 'humanize-duration'
 
 export const AppContext = createContext()
 
-export  const AppContextProvider = (props) =>{
+export const AppContextProvider = (props) => {
     const currency = import.meta.env.VITE_CURRENCY
-    const navigate= useNavigate()
-    const [allCourses , setAllCourses] = useState([])
+    const navigate = useNavigate()
+    const [allCourses, setAllCourses] = useState([])
     const [isEducator, setIsEducator] = useState(true)
 
     // fetching all courses
-    const fetchAllCourses = async ()=>{
+    const fetchAllCourses = async () => {
         setAllCourses(dummyCourses)
     }
     // function to calculate average rating of a course
-    const calculateRating = (course)=>{
-        if(course.courseRatings.length ===0){
+    const calculateRating = (course) => {
+        if (course.courseRatings.length === 0) {
             return 0;
         }
-        let totalRating =0
-        course.courseRatings.forEach(rating=>{
+        let totalRating = 0
+        course.courseRatings.forEach(rating => {
             totalRating += rating.rating
         })
         return totalRating / course.courseRatings.length
     }
 
+    // function to calculate course chapter time
+    const calculateChapterTime = (chapter) => {
+        let time = 0
+        chapter.chapterContent.map((lecture) => time += lecture.lectureDuration)
+        return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] })
+
+
+    }
+    // function to calculate the course duration(duration of each chapter)
+    const calculateCourseDuration = (course) => {
+        let time = 0
+        course.courseContent.map((chapter) => chapter.chapterContent.map(
+            (lecture) => time += lecture.lectureDuration
+        ))
+        return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] })
+
+    }
+    // total no of lecture available in the course
+    const calculateNoOfLectures = (course) => {
+        let totalLectures = 0;
+        course.courseContent.forEach(chapter => {
+            if (Array.isArray(chapter.chapterContent)) {
+                totalLectures += chapter.chapterContent.length
+            }
+        });
+        return totalLectures;
+    }
 
 
 
 
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchAllCourses()
 
-    },[])
+    }, [])
     // fetchAllCourses() ye function fetch karega data dummyCourses se or store karega allCourses state 
-    const value ={
-        currency , allCourses ,navigate, calculateRating, isEducator,setIsEducator
+    const value = {
+        currency, allCourses, navigate, calculateRating, isEducator, setIsEducator, calculateNoOfLectures, calculateCourseDuration
+        , calculateChapterTime
 
     }
     return (
-        <AppContext.Provider value = {value}>
+        <AppContext.Provider value={value}>
             {props.children}
         </AppContext.Provider>
     )

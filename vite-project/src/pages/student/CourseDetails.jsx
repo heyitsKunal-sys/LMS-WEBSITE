@@ -8,7 +8,7 @@ const CourseDetails = () => {
   const { id } = useParams()   //using this id we can find particular course from allCourses
   const [courseData, setCourseData] = useState(null)
 
-  const { allCourses, calculateRating } = useContext(AppContext)
+  const { allCourses, calculateRating, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime } = useContext(AppContext)
 
   const fetchCourseData = async () => {
     const findCourse = allCourses.find(course => course._id === id)
@@ -34,7 +34,7 @@ const CourseDetails = () => {
           <p className='pt-4 md:text-base text-sm'
             dangerouslySetInnerHTML={{ __html: courseData.courseDescription }}></p>
           {/* review AND rating */}
-          <div className='flex items-center space-x-2'>
+          <div className='flex items-center space-x-2 pt-3 pb-1 text-sm'>
 
             <p>{calculateRating(courseData)}</p>
 
@@ -47,6 +47,7 @@ const CourseDetails = () => {
             <p className='text-blue-800'>({courseData.courseRatings.length} {courseData.courseRatings.length > 1 ? 'ratings' : 'rating'})</p>
             <p>{courseData.enrolledStudents.length}{courseData.enrolledStudents.length > 1 ? 'students' : 'student'}</p>
           </div>
+          <p className='text-sm'>Course By <span className='text-blue-800 underline'>Alex Goot</span></p>
         </div>
 
 
