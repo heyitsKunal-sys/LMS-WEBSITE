@@ -5,11 +5,14 @@ import Loading from '../../components/student/Loading'
 import Footer from '../../components/student/Footer'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
+import YouTube from 'react-youtube'
 
 const CourseDetails = () => {
   const { id } = useParams()
   const [courseData, setCourseData] = useState(null)
   const [openSections, setOpenSections] = useState({})
+  const [isAlreadyEnrolled, setIsAlreadyEnrolled] = useState(false)
+  const [playerData, setPlayerData] = useState(null)
 
   const { allCourses, currency, calculateRating, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime } = useContext(AppContext)
 
@@ -78,7 +81,10 @@ const CourseDetails = () => {
                           <div className='flex items-center justify-between w-full text-xs md:text-sm'>
                             <p>{lecture.lectureTitle}</p>
                             <div className='flex gap-2 items-center'>
-                              {lecture.isPreviewFree && <p className='text-cyan-glow'>Preview</p>}
+                              {lecture.isPreviewFree && <p onClick={() => setPlayerData({
+                                videoId: lecture.lectureUrl.split('/').pop()
+                              })}
+                                className='text-cyan-glow cursor-pointer'>Preview</p>}
                               <p className='text-ink-500'>{humanizeDuration(lecture.lectureDuration * 60 * 1000, { units: ['h', 'm'] })}</p>
                             </div>
                           </div>
@@ -103,11 +109,20 @@ const CourseDetails = () => {
         {/* right column — enroll card */}
         <div className='w-full md:w-[360px] shrink-0 sticky top-24 z-10'>
           <div className='card-surface rounded-2xl overflow-hidden shadow-2xl shadow-brand-900/40'>
-            <img className='w-full aspect-video object-cover' src={courseData.courseThumbnail} alt={courseData.courseTitle} />
+            {
+              playerData ?
+                <YouTube videoId={playerData.videoId} opts={{ playerVars: { autoplay: 1 } }}
+                  iframeClassName='w-full aspect-video' />
+                : <img className='w-full aspect-video object-cover' src={courseData.courseThumbnail} alt={courseData.courseTitle} />
+            }
+
             <div className='p-6'>
               <div className='flex items-center gap-2 text-accent-500 font-medium text-sm'>
-                <img src={assets.time_left_clock_icon} alt="" className='w-4 h-4' />
+
+
+
                 <p>Limited-time offer — enroll today</p>
+                <img src={assets.time_left_clock_icon} alt="" className='w-4 h-4' />
               </div>
 
               <div className='flex items-baseline gap-3 pt-3'>
@@ -129,7 +144,7 @@ const CourseDetails = () => {
                 </div>
               </div>
 
-              <button className='btn-primary w-full mt-6 !py-3'>Enroll Now</button>
+              <button className='btn-primary w-full mt-6 !py-3'>{isAlreadyEnrolled ? 'Already Enrolled' : 'Enroll Now'}</button>
 
               <div className='pt-6'>
                 <p className='text-sm font-semibold text-ink-900 mb-2'>This course includes:</p>

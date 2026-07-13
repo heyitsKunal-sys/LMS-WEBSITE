@@ -28,7 +28,7 @@ const SearchBar = ({data}) => {
 
         <button
           type="submit"
-          className="h-12 sm:h-14 px-5 sm:px-8 lg:px-10 bg-gradient-to-r from-brand-500 to-brand-600 text-white text-sm sm:text-base font-semibold hover:opacity-90 transition-all duration-300"
+          className="h-12 sm:h-14 px-5 sm:px-8 lg:px-10 bg-linear-to-r from-brand-500 to-brand-600 text-white text-sm sm:text-base font-semibold hover:opacity-90 transition-all duration-300"
         >
           Search
         </button>
