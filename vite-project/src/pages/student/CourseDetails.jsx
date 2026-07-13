@@ -107,7 +107,7 @@ const CourseDetails = () => {
         </div>
 
         {/* right column — enroll card */}
-        <div className='w-full md:w-[360px] shrink-0 sticky top-24 z-10'>
+        <div className='w-full md:w-90 shrink-0 sticky top-24 z-10'>
           <div className='card-surface rounded-2xl overflow-hidden shadow-2xl shadow-brand-900/40'>
             {
               playerData ?
@@ -144,7 +144,7 @@ const CourseDetails = () => {
                 </div>
               </div>
 
-              <button className='btn-primary w-full mt-6 !py-3'>{isAlreadyEnrolled ? 'Already Enrolled' : 'Enroll Now'}</button>
+              <button className='btn-primary w-full mt-6 py-3!'>{isAlreadyEnrolled ? 'Already Enrolled' : 'Enroll Now'}</button>
 
               <div className='pt-6'>
                 <p className='text-sm font-semibold text-ink-900 mb-2'>This course includes:</p>

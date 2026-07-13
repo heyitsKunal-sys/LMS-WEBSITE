@@ -12,7 +12,7 @@ const Dashboard = () => {
   return dashboardData ? (
     <div className='p-5 sm:p-8'>
       <h1 className='font-display text-2xl font-bold text-white'>Educator Dashboard</h1>
-      <p className='text-ink-300 mt-1'>A snapshot of how your courses are performing.</p>
+      <p className='text-ink-300 mt-1'>A snapshot of how our courses are performing.</p>
 
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-5 mt-6'>
         <div className='card-surface rounded-2xl p-5 flex items-center gap-4'>

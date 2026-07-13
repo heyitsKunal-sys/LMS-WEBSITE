@@ -20,7 +20,7 @@ const MyEnrollments = () => {
         <p className='text-ink-300 mt-2'>Pick up right where you left off.</p>
 
         <div className='card-surface rounded-2xl overflow-hidden mt-8 overflow-x-auto'>
-          <table className='w-full text-left min-w-[600px]'>
+          <table className='w-full text-left min-w-150'>
             <thead className='bg-black/5 text-ink-500 text-sm hidden sm:table-header-group'>
               <tr>
                 <th className='px-5 py-3 font-medium'>Course</th>
@@ -33,7 +33,7 @@ const MyEnrollments = () => {
               {enrolledCourses.map((course, index) => {
                 const progress = [80, 45, 100, 20, 60][index % 5]
                 return (
-                  <tr key={index} className='hover:bg-black/[0.02] transition-colors cursor-pointer' onClick={() => navigate('/player/' + course._id)}>
+                  <tr key={index} className='hover:bg-black/2 transition-colors cursor-pointer' onClick={() => navigate('/player/' + course._id)}>
                     <td className='px-5 py-4 flex items-center gap-3'>
                       <img src={course.courseThumbnail} alt="" className='w-20 aspect-video rounded-lg object-cover' />
                       <span className='text-ink-900 font-medium line-clamp-2'>{course.courseTitle}</span>

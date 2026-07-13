@@ -12,7 +12,7 @@ const StudentsEnroll = () => {
   return enrolledStudents ? (
     <div className='p-5 sm:p-8'>
       <h1 className='font-display text-2xl font-bold text-white'>Student Enrollments</h1>
-      <p className='text-ink-300 mt-1'>Everyone who has purchased one of your courses.</p>
+      <p className='text-ink-300 mt-1'>Everyone who has purchased one of our courses.</p>
 
       <div className='card-surface rounded-2xl overflow-hidden mt-6 overflow-x-auto'>
         <table className='w-full text-left min-w-[560px]'>
