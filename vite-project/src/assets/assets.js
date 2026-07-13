@@ -95,7 +95,7 @@ export const dummyEducatorData = {
     "_id": "675ac1512100b91a6d9b8b24",
     "name": "Priya Sharma",
     "email": "bhardwajkunal0111@gmail.com",
-    "imageUrl": "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yclFkaDBOMmFqWnBoTTRBOXZUanZxVlo0aXYifQ",
+    "imageUrl": "https://th.bing.com/th/id/OIP.8xC-Y-eFY84Set5-4ubV5AHaE7?w=285&h=190&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
     "createdAt": "2024-12-12T10:56:17.930Z",
     "updatedAt": "2024-12-12T10:56:17.930Z",
     "__v": 0
