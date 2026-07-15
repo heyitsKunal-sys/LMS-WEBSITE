@@ -2,13 +2,14 @@ import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
 import connectDb from './configs/mongodb.js' 
+import {clerkWebhooks} from './controllers/webhooks.js'
 
 
 // initailize the Express
 
 const app = express()
 
-// connect to database
+// connect to database.
 await connectDb()
 
 
@@ -18,9 +19,11 @@ app.use(cors())
 
 
 
-// creating default route
+// creating default route or Routes
 
 app.get('/', (req,res)=> res.send("Api Working"))
+
+app.post('/clerk' , express.json(), clerkWebhooks)
 
 
 // PORT
