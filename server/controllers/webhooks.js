@@ -27,15 +27,23 @@ export const clerkWebhooks = async (req, res) => {
                     imageUrl: data.image_url,
                 };
 
-                console.log("Creating User:", userData);
+                console.log("Creating/Updating User:", userData);
 
-                const user = await User.create(userData);
+                await User.findByIdAndUpdate(
+                    data.id,
+                    userData,
+                    {
+                        new: true,
+                        upsert: true,
+                        setDefaultsOnInsert: true,
+                    }
+                );
 
-                console.log("User Created Successfully:", user);
+                console.log("User Saved Successfully");
 
                 return res.status(200).json({
                     success: true,
-                    message: "User created successfully",
+                    message: "User saved successfully",
                 });
             }
 
