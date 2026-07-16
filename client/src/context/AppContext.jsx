@@ -2,14 +2,18 @@ import { createContext, useEffect, useState } from 'react';
 import { dummyCourses } from '../assets/assets';
 import { useNavigate } from 'react-router-dom';
 import humanizeDuration from 'humanize-duration'
+import {useAuth , useUser} from '@clerk/clerk-react'
 
 export const AppContext = createContext()
 
 export const AppContextProvider = (props) => {
     const currency = import.meta.env.VITE_CURRENCY
     const navigate = useNavigate()
+    const{getToken} = useAuth()
+    const {user} = useUser()
     const [allCourses, setAllCourses] = useState([])
     const [isEducator, setIsEducator] = useState(true)
+    const[enrolledCourses, setEnrolledCourses] = useState([])
 
     // fetching all courses
     const fetchAllCourses = async () => {
@@ -54,6 +58,9 @@ export const AppContextProvider = (props) => {
         });
         return totalLectures;
     }
+    const fetchUserEnrolledCourses = async () =>{
+        setEnrolledCourses(dummyCourses)
+    }
 
 
 
@@ -61,12 +68,13 @@ export const AppContextProvider = (props) => {
 
     useEffect(() => {
         fetchAllCourses()
+        fetchUserEnrolledCourses()
 
     }, [])
     // fetchAllCourses() ye function fetch karega data dummyCourses se or store karega allCourses state 
     const value = {
         currency, allCourses, navigate, calculateRating, isEducator, setIsEducator, calculateNoOfLectures, calculateCourseDuration
-        , calculateChapterTime
+        , calculateChapterTime, fetchUserEnrolledCourses
 
     }
     return (
