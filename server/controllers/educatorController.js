@@ -1,22 +1,38 @@
 // we have to create one function that will update the role of educato.
 // so that regular can become educator
 
-import { clerkClient } from '@clerk/express'
-import { response } from 'express'
+import { clerkClient, getAuth } from "@clerk/express";
 
+export const updateRoleToEducator = async (req, res) => {
+  try {
+    const { userId } = getAuth(req);
 
-export const updateRoleToEducator = async () => {
-    try {
-        const userId = req.auth.userId
+    console.log("User ID:", userId);
 
-        await clerkClient.users.updateUserMetadata(userId, {
-            publicMetadata: {
-                role: ' educator',
-            }
-        })
-        res.json({ sucess: true, message: "You have publish your course now" })
-    } catch (error) {
-        res.json({ sucess: false, meassage: error.message })
-
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated",
+      });
     }
-}
+
+    await clerkClient.users.updateUserMetadata(userId, {
+      publicMetadata: {
+        role: "educator",
+      },
+    });
+
+    return res.json({
+      success: true,
+      message: "You can publish a course now",
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

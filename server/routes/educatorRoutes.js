@@ -1,5 +1,6 @@
 import express from 'express'
-import { updateRoleToEducator } from '../controllers/educatorController'
+import { updateRoleToEducator } from '../controllers/educatorController.js'
+import { requireAuth } from '@clerk/express'
 
 
 const educatorRouter = express.Router()
