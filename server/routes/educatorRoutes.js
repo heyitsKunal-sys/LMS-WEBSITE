@@ -7,6 +7,6 @@ const educatorRouter = express.Router()
 
 
 // add educator role
-educatorRouter.get('/update-role', updateRoleToEducator)
+educatorRouter.get('/update-role', requireAuth(),updateRoleToEducator)
 
 export default educatorRouter;
