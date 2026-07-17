@@ -1,12 +1,17 @@
 import React, { useRef, useState } from 'react'
 import { assets } from '../../assets/assets'
-
+import { useAuth } from '@clerk/clerk-react'
+console.log('backend url:', import.meta.env.VITE_BACKEND_URL)
 const AddCourse = () => {
+  const { getToken } = useAuth()
+  const backendUrl = import.meta.env.VITE_BACKEND_URL
+
   const [courseTitle, setCourseTitle] = useState('')
   const [coursePrice, setCoursePrice] = useState(0)
   const [discount, setDiscount] = useState(0)
   const [description, setDescription] = useState('')
   const [thumbnail, setThumbnail] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const [chapters, setChapters] = useState([])
   const [showLectureModal, setShowLectureModal] = useState(false)
@@ -113,8 +118,84 @@ const AddCourse = () => {
     )
   }
 
-  const onSubmitHandler = (e) => {
+  const resetForm = () => {
+    setCourseTitle('')
+    setCoursePrice(0)
+    setDiscount(0)
+    setDescription('')
+    setThumbnail(null)
+    setChapters([])
+  }
+
+  const onSubmitHandler = async (e) => {
     e.preventDefault()
+
+    if (!courseTitle || !description) {
+      alert('Please fill in the course title and description.')
+      return
+    }
+    if (!thumbnail) {
+      alert('Please add a course thumbnail.')
+      return
+    }
+    if (chapters.length === 0) {
+      alert('Please add at least one chapter.')
+      return
+    }
+
+    // map local UI shape -> backend schema shape
+    const courseContent = chapters.map((chapter, chapterIndex) => ({
+      chapterId: String(chapter.id),
+      chapterOrder: chapterIndex + 1,
+      chapterTitle: chapter.title,
+      chapterContent: chapter.lectures.map((lecture, lectureIndex) => ({
+        lectureId: String(lecture.id),
+        lectureTitle: lecture.title,
+        lectureDuration: Number(lecture.duration),
+        lectureUrl: lecture.url,
+        isPreviewFree: lecture.preview,
+        lectureOrder: lectureIndex + 1,
+      })),
+    }))
+
+    const courseData = {
+      courseTitle,
+      courseDescription: description,
+      coursePrice: Number(coursePrice),
+      discount: Number(discount),
+      courseContent,
+    }
+
+    const formData = new FormData()
+    formData.append('courseData', JSON.stringify(courseData))
+    formData.append('image', thumbnail)
+
+    setIsSubmitting(true)
+    try {
+      const token = await getToken()
+
+      const response = await fetch(`${backendUrl}/api/educator/add-course`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        alert('Course added successfully!')
+        resetForm()
+      } else {
+        alert(data.message || 'Failed to add course.')
+      }
+    } catch (error) {
+      console.error(error)
+      alert('Something went wrong while adding the course.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -395,7 +476,13 @@ const AddCourse = () => {
 
         </div>
 
-        <button type="submit" className='btn-primary self-start mt-2'>Publish Course</button>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className='btn-primary self-start mt-2 disabled:opacity-60 disabled:cursor-not-allowed'
+        >
+          {isSubmitting ? 'Publishing...' : 'Publish Course'}
+        </button>
       </form>
       {
         showLectureModal && (

@@ -21,7 +21,8 @@ await connectCloudinary()
 // Middleware
 app.use(cors())
 app.use(clerkMiddleware())
-
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 // creating default route or Routes
 
@@ -29,7 +30,7 @@ app.get('/', (req,res)=> res.send("Api Working"))
 
 app.post('/clerk' , express.json(), clerkWebhooks)
 
-app.use('/api/educator',express.json(), educatorRouter)
+app.use('/api/educator', educatorRouter)
 
 
 // PORT
