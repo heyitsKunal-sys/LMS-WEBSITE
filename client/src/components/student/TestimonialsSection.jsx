@@ -14,7 +14,7 @@ const TestimonialsSection = () => {
 
         <p className="mt-4 text-center text-ink-300 max-w-3xl mx-auto text-sm sm:text-base leading-7">
           Real people, real career moves. Here's what a few of our students
-          have to say about learning with Nexalearn.
+          have to say about learning with Learnify.
         </p>
 
         {/* Testimonial Cards */}

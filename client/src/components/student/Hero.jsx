@@ -106,7 +106,7 @@ const Hero = () => {
             leading-7
           "
         >
-          Nexalearn pairs project-based courses with instructors who work in the
+          Learnify pairs project-based courses with instructors who work in the
           field right now. Learn by building, get feedback that matters, and
           walk away with a portfolio — not just a certificate.
         </p>

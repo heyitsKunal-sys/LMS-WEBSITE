@@ -10,8 +10,8 @@ const Navbar = () => {
   return (
     <div className='sticky top-0 z-40 flex items-center justify-between px-4 sm:px-8 py-3.5 border-b border-white/10 bg-ink-900/80 backdrop-blur-xl'>
       <Link to='/' className='flex items-center gap-2'>
-        <img src={assets.logo} alt="Nexalearn" className='w-8' />
-        <span className='font-display font-bold text-lg text-white hidden sm:inline'>Nexalearn</span>
+        <img src={assets.logo} alt="Learnify" className='w-8' />
+        <span className='font-display font-bold text-lg text-white hidden sm:inline'>Learnify</span>
         <span className='hidden md:inline text-ink-500 text-sm font-medium ml-2 pl-2 border-l border-white/10'>Educator Studio</span>
       </Link>
 

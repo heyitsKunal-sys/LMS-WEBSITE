@@ -17,8 +17,8 @@ const Navbar = () => {
       <div className='flex justify-between items-center px-4 sm:px-10 md:px-14 lg:px-20 py-3.5 max-w-[1600px] mx-auto'>
 
         <button onClick={() => navigate('/')} className='flex items-center gap-2 cursor-pointer'>
-          <img src={assets.logo} alt="Nexalearn" className='w-8 lg:w-9' />
-          <span className='font-display font-bold text-lg lg:text-xl text-white tracking-tight'>Nexalearn</span>
+          <img src={assets.logo} alt="Learnify" className='w-8 lg:w-9' />
+          <span className='font-display font-bold text-lg lg:text-xl text-white tracking-tight'>Learnify</span>
         </button>
 
         {/* desktop */}

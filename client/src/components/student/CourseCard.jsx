@@ -16,7 +16,7 @@ const CourseCard = ({ course }) => {
       <div className='p-4 text-left'>
 
         <h3 className='text-base font-semibold text-ink-900 line-clamp-2 min-h-12'>{course.courseTitle}</h3>
-        <p className='text-ink-500 text-sm mt-1'>{course.educatorName || 'Nexalearn Instructor'}</p>
+        <p className='text-ink-500 text-sm mt-1'>{course.educatorName || 'Learnify Instructor'}</p>
 
         <div className='flex items-center space-x-2 mt-2'>
 

@@ -55,7 +55,7 @@ const CourseDetails = () => {
             <span className='text-ink-500'>•</span>
             <p>{courseData.enrolledStudents.length} {courseData.enrolledStudents.length > 1 ? 'students' : 'student'} enrolled</p>
           </div>
-          <p className='text-sm mt-1'>Taught by <span className='text-brand-300 font-medium'>{courseData.educatorName || 'Nexalearn Instructor'}</span></p>
+          <p className='text-sm mt-1'>Taught by <span className='text-brand-300 font-medium'>{courseData.educatorName || 'Learnify Instructor'}</span></p>
 
           <div className='pt-8'>
             <h2 className='text-xl font-display font-semibold text-white'>Course Structure</h2>

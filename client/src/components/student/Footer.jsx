@@ -9,7 +9,7 @@ const Footer = () => {
         <div className='flex flex-col md:items-start items-center w-full'>
           <div className='flex items-center gap-2'>
             <img className='w-8 h-8' src={assets.logo} alt="logo" />
-            <span className='font-display font-bold text-lg text-white'>Nexalearn</span>
+            <span className='font-display font-bold text-lg text-white'>Learnify</span>
           </div>
           <p className='mt-4 text-center md:text-left text-sm text-ink-300 max-w-xs'>
             A learning platform built around real projects, honest feedback, and
@@ -36,7 +36,7 @@ const Footer = () => {
         </div>
 
       </div>
-      <p className='py-5 text-center text-xs md:text-sm text-ink-300 border-t border-white/10'>© 2026 Nexalearn. All rights reserved.</p>
+      <p className='py-5 text-center text-xs md:text-sm text-ink-300 border-t border-white/10'>© 2026 Learnify. All rights reserved.</p>
 
     </footer>
   )

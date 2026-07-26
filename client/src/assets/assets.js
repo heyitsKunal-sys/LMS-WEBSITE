@@ -107,7 +107,7 @@ export const dummyTestimonial = [
         role: 'Frontend Engineer @ Zomato',
         image: assets.profile_img_1,
         rating: 5,
-        feedback: 'The courses on Nexalearn are structured so well that I went from barely knowing JavaScript to shipping production code in under three months.',
+        feedback: 'The courses on Learnify are structured so well that I went from barely knowing JavaScript to shipping production code in under three months.',
     },
     {
         name: 'Kabir Anand',
